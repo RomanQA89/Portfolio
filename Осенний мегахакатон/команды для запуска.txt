@@ -1,0 +1,24 @@
+cd C:\jmeter_tests\
+
+..\Jmeter\bin\jmeter.bat -n -t .\leadupcrm_100\leadupcrm_100.jmx -l .\leadupcrm_100\logs.jtl -e -o .\leadupcrm_100\results\
+
+
+Если тесты зависли и отчеты не сохраняются в папке results, то запускаем в режиме non-GUI с поддержкой RMI.
+При 500 запросах например идёт зависание и лучше запускать в режиме non-GUI.
+Для запуска в режиме non-GUI с поддержкой RMI (удаленного управления), добавив флаг -Jserver.rmi.localport=4445. Например:
+
+..\Jmeter\bin\jmeter.bat -n -t .\leadupcrm_500\leadupcrm_500.jmx -l .\leadupcrm_500\logs.jtl -e -o .\leadupcrm_500\results\ -Jserver.rmi.localport=4445
+
+
+Отправка команды Shutdown для корректного завершения. Для этого откройте новую сессию PowerShell и выполните команду:
+
+..\Jmeter\bin\shutdown.cmd
+
+Команда shutdown.cmd завершит тест, корректно сохраняя логи и отчет.
+
+
+Если нужно мгновенное завершение, используйте команду stoptest.cmd:
+
+..\Jmeter\bin\stoptest.cmd
+
+stoptest.cmd остановит тест быстрее, но также старается сохранить текущие данные и результаты.
